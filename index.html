@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Pantry</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar">
+    <a href="#" class="logo" onclick="showPage('home'); return false;">
+        Smart Pantry
+    </a>
+
+    <div class="nav-links" id="main-nav">
+        <a href="#" onclick="showPage('home'); return false;">Home</a>
+        <a href="#" onclick="showPage('dashboard'); return false;">Dashboard</a>
+        <a href="#" onclick="showPage('pantry'); return false;">My Pantry</a>
+        <a href="#" onclick="showPage('add-item'); return false;">Add Item</a>
+        <a href="#" onclick="showPage('shopping-list'); return false;">Shopping List</a>
+        <a href="#" onclick="showPage('recipes'); return false;">Recipes</a>
+        <a href="#" onclick="showPage('login'); return false;" id="login-link">Login</a>
+        <a href="#" onclick="logout(); return false;" id="logout-link" style="display:none;">Logout</a>
+    </div>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="hero page-section">
+    <div class="hero-content">
+        <span class="tag">YOUR KITCHEN, ORGANIZED</span>
+        <h1>Your Pantry,<br><span>Your Way.</span></h1>
+        <p>Track groceries, expiry dates and essentials. Organize your kitchen and reduce food waste.</p>
+        <button class="primary-btn" onclick="showPage('signup')">Get Started</button>
+        <button class="secondary-btn" onclick="showPage('login')">Login</button>
+    </div>
+</section>
+
+<!-- LOGIN -->
+<section id="login" class="section form-section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">WELCOME BACK</span>
+            <h2>Login</h2>
+            <p>Sign in to access your pantry.</p>
+        </div>
+    </div>
+
+    <form id="login-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" required>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <input type="password" id="login-password" required>
+            </div>
+        </div>
+        <button class="primary-btn" type="submit">Login</button>
+        <p id="login-message" class="form-message"></p>
+        <p>Don't have an account?
+            <a href="#" onclick="showPage('signup'); return false;">Sign up</a>
+        </p>
+    </form>
+</section>
+
+<!-- SIGNUP -->
+<section id="signup" class="section form-section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">JOIN SMART PANTRY</span>
+            <h2>Create Account</h2>
+            <p>Create an account to manage your kitchen.</p>
+        </div>
+    </div>
+
+    <form id="signup-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="signup-name">Name</label>
+                <input type="text" id="signup-name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <input type="password" id="signup-password" minlength="8" required>
+            </div>
+        </div>
+        <button class="primary-btn" type="submit">Create Account</button>
+        <p id="signup-message" class="form-message"></p>
+        <p>Already registered?
+            <a href="#" onclick="showPage('login'); return false;">Login</a>
+        </p>
+    </form>
+</section>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="section page-section" style="display:none;">
+    <span class="tag">YOUR KITCHEN AT A GLANCE</span>
+    <h2>Dashboard</h2>
+    <p>Here's what's happening in your pantry.</p>
+
+    <div class="dashboard-grid">
+        <div class="dashboard-card">
+            <h3>Total Items</h3>
+            <p id="total-items">0</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Low Stock</h3>
+            <p id="low-stock-count">0</p>
+        </div>
+        <div class="dashboard-card">
+            <h3>Expiring Soon</h3>
+            <p id="expiry-count">0</p>
+        </div>
+    </div>
+
+    <h3 class="subheading">Expiry Alerts</h3>
+    <div id="dashboard-alerts" class="item-grid"></div>
+</section>
+
+<!-- PANTRY -->
+<section id="pantry" class="section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">YOUR INGREDIENTS</span>
+            <h2>My Pantry</h2>
+            <p>Search and filter your kitchen inventory.</p>
+        </div>
+        <button class="secondary-btn" onclick="loadItems()">Refresh</button>
+    </div>
+
+    <div class="filter-bar">
+        <input type="search" id="pantry-search" placeholder="Search items...">
+        <select id="pantry-filter">
+            <option value="all">All Items</option>
+            <option value="low">Low Stock</option>
+            <option value="expiring">Expiring Soon</option>
+            <option value="expired">Expired</option>
+        </select>
+    </div>
+
+    <div id="pantry-list" class="item-grid"></div>
+</section>
+
+<!-- ADD ITEM -->
+<section id="add-item" class="section form-section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">KEEP TRACK</span>
+            <h2>Add a Pantry Item</h2>
+            <p>Enter your ingredient details below.</p>
+        </div>
+    </div>
+
+    <form id="item-form">
+        <div class="form-grid">
+            <div class="form-group">
+                <label for="item-name">Item Name</label>
+                <input type="text" id="item-name" placeholder="e.g. Milk" required>
+            </div>
+            <div class="form-group">
+                <label for="item-quantity">Quantity</label>
+                <input type="number" id="item-quantity" min="0" step="any" required>
+            </div>
+            <div class="form-group">
+                <label for="item-unit">Unit</label>
+                <select id="item-unit" required>
+                    <option value="">Select unit</option>
+                    <option value="pieces">Pieces</option>
+                    <option value="kg">Kg</option>
+                    <option value="g">Grams</option>
+                    <option value="litres">Litres</option>
+                    <option value="ml">Millilitres</option>
+                    <option value="packets">Packets</option>
+                    <option value="bottles">Bottles</option>
+                    <option value="dozen">Dozen</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="item-expiry">Expiry Date</label>
+                <input type="date" id="item-expiry" required>
+            </div>
+            <div class="form-group">
+                <label for="item-minimum">Minimum Quantity</label>
+                <input type="number" id="item-minimum" min="0" step="any" required>
+            </div>
+        </div>
+
+        <button type="submit" class="primary-btn" id="save-button">Save Item</button>
+        <p id="form-message" class="form-message"></p>
+    </form>
+</section>
+
+<!-- SHOPPING LIST -->
+<section id="shopping-list" class="section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">NEED TO RESTOCK?</span>
+            <h2>Shopping List</h2>
+            <p>Items that have reached their minimum quantity.</p>
+        </div>
+        <button class="secondary-btn" onclick="loadShoppingList()">Refresh</button>
+    </div>
+    <div id="shopping-items" class="item-grid"></div>
+</section>
+
+<!-- RECIPES -->
+<section id="recipes" class="section recipe-section page-section" style="display:none;">
+    <div class="section-heading">
+        <div>
+            <span class="tag">WHAT'S COOKING?</span>
+            <h2>Recipe Suggestions</h2>
+            <p>Discover recipes using ingredients in your pantry.</p>
+        </div>
+    </div>
+
+    <button class="primary-btn" onclick="loadRecipes()">Find Recipes</button>
+    <div id="recipe-list" class="item-grid"></div>
+</section>
+
+<footer>
+    <p>Made with love for a smarter kitchen.</p>
+</footer>
+
+<script src="/static/script.js"></script>
+</body>
+</html>

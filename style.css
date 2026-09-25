@@ -1,0 +1,567 @@
+
+
+/* =========================
+   SMART PANTRY - FULL CSS
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary: #e75480;
+    --primary-dark: #c93d68;
+    --pink-light: #fff0f5;
+    --pink-bg: #fff5f8;
+    --text: #333;
+    --muted: #777;
+    --white: #fff;
+    --border: #f5d6e0;
+    --green: #16803c;
+    --red: #c62828;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--pink-bg);
+    color: var(--text);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+    background: var(--primary);
+    color: white;
+    padding: 18px 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar .logo {
+    font-size: 25px;
+    font-weight: 800;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: 0.2s;
+}
+
+.nav-links a:hover {
+    color: #ffe1eb;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   PAGE LAYOUT
+========================= */
+
+.page-section {
+    display: none;
+}
+
+section.page-section {
+    max-width: 1200px;
+    width: 92%;
+    margin: 35px auto;
+    padding: 35px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+}
+
+h1, h2, h3 {
+    line-height: 1.3;
+}
+
+h2 {
+    color: #d6336c;
+    font-size: 30px;
+    margin: 8px 0 15px;
+}
+
+h3 {
+    color: #444;
+    margin-bottom: 12px;
+}
+
+p {
+    margin-bottom: 12px;
+}
+
+.tag {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 700;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    margin-bottom: 10px;
+}
+
+/* =========================
+   HOME / HERO
+========================= */
+
+section.hero {
+    max-width: 100%;
+    width: 100%;
+    min-height: 75vh;
+    margin: 0;
+    padding: 100px 8%;
+    border-radius: 0;
+    box-shadow: none;
+    background: linear-gradient(
+        135deg,
+        #fff0f5 0%,
+        #ffe0eb 55%,
+        #fff5f8 100%
+    );
+    display: none;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 750px;
+}
+
+.hero h1 {
+    font-size: clamp(40px, 6vw, 70px);
+    font-weight: 800;
+    line-height: 1.15;
+    margin: 15px 0 20px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    font-size: 18px;
+    color: #666;
+    max-width: 600px;
+    margin-bottom: 25px;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+button {
+    font: inherit;
+    border: none;
+    border-radius: 9px;
+    padding: 12px 22px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: 0.2s;
+    margin: 4px;
+}
+
+.primary-btn {
+    background: var(--primary);
+    color: white;
+}
+
+.primary-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+.secondary-btn {
+    background: white;
+    color: var(--primary);
+    border: 1px solid var(--primary);
+}
+
+.secondary-btn:hover {
+    background: var(--pink-light);
+}
+
+button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* =========================
+   FORMS / AUTH
+========================= */
+
+.form-section {
+    max-width: 850px !important;
+}
+
+.auth-container {
+    max-width: 450px;
+    margin: 50px auto;
+}
+
+form {
+    margin-top: 20px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 15px 22px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+label {
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+input,
+select {
+    width: 100%;
+    font: inherit;
+    padding: 13px 14px;
+    margin: 5px 0 15px;
+    border: 1px solid #ddd;
+    border-radius: 9px;
+    background: white;
+    color: var(--text);
+}
+
+input:focus,
+select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(231, 84, 128, 0.12);
+}
+
+input[type="date"] {
+    cursor: pointer;
+}
+
+.form-message {
+    margin-top: 12px;
+    font-weight: 600;
+    color: var(--primary-dark);
+}
+
+.success {
+    color: var(--green);
+}
+
+.error {
+    color: var(--red);
+}
+
+/* =========================
+   DASHBOARD
+========================= */
+
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+    margin: 25px 0 35px;
+}
+
+.dashboard-card {
+    background: var(--pink-light);
+    padding: 28px;
+    border-radius: 15px;
+    border-left: 5px solid var(--primary);
+    transition: 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.12);
+}
+
+.dashboard-card h3 {
+    font-size: 16px;
+    color: #666;
+}
+
+.dashboard-card p {
+    font-size: 36px;
+    font-weight: 800;
+    color: #d6336c;
+    margin: 10px 0 0;
+}
+
+.subheading {
+    font-size: 23px;
+    margin: 25px 0 15px;
+}
+
+/* =========================
+   PANTRY / SHOPPING / RECIPES
+========================= */
+
+.item-grid,
+#pantry-list,
+#shopping-items,
+#recipe-list,
+#dashboard-alerts {
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fit,
+        minmax(250px, 1fr)
+    );
+    gap: 18px;
+    margin-top: 20px;
+}
+
+.pantry-card,
+.pantry-item,
+.shopping-item,
+.recipe-card {
+    background: #fff8fa;
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 22px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.04);
+    transition: 0.2s;
+    min-width: 0;
+}
+
+.pantry-card:hover,
+.pantry-item:hover,
+.shopping-item:hover,
+.recipe-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(231, 84, 128, 0.1);
+}
+
+.pantry-card h3,
+.pantry-item h3,
+.recipe-card h3 {
+    color: #d6336c;
+    font-size: 20px;
+    margin-bottom: 12px;
+}
+
+.pantry-card p,
+.pantry-item p,
+.recipe-card p,
+.shopping-item p {
+    margin: 8px 0;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.card-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+}
+
+.edit-btn {
+    background: #6c63ff;
+    color: white;
+}
+
+.delete-btn {
+    background: #dc3545;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #5148d8;
+}
+
+.delete-btn:hover {
+    background: #b02a37;
+}
+
+/* =========================
+   STATUS BADGES
+========================= */
+
+.status-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    margin: 5px 5px 5px 0;
+}
+
+.expiry-status {
+    background: #fff0c2;
+    color: #946200;
+}
+
+.expired {
+    background: #ffe0e0;
+    color: #b42318;
+}
+
+.low-stock {
+    background: #ffe4d6;
+    color: #b54708;
+}
+
+/* =========================
+   SEARCH AND FILTER
+========================= */
+
+.filter-bar {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.filter-bar input,
+.filter-bar select {
+    flex: 1;
+    min-width: 200px;
+    margin: 0;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #777;
+    font-size: 14px;
+}
+
+footer p {
+    margin: 0;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+
+@media (max-width: 900px) {
+    .navbar {
+        padding: 16px 4%;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 14px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    section.page-section {
+        padding: 25px;
+    }
+
+    section.hero {
+        padding: 70px 6%;
+    }
+}
+
+@media (max-width: 600px) {
+    .navbar {
+        position: relative;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-links {
+        display: flex;
+        width: 100%;
+        gap: 10px 16px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    section.page-section {
+        width: 94%;
+        margin: 20px auto;
+        padding: 20px;
+        border-radius: 13px;
+    }
+
+    section.hero {
+        min-height: 65vh;
+        padding: 55px 6%;
+    }
+
+    .hero h1 {
+        font-size: 42px;
+    }
+
+    .hero p {
+        font-size: 16px;
+    }
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+    .item-grid,
+    #pantry-list,
+    #shopping-items,
+    #recipe-list,
+    #dashboard-alerts {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .filter-bar input,
+    .filter-bar select {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .section-heading {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+}
